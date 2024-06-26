@@ -1,0 +1,107 @@
+#from data.character_data.races.dwarf_char_creation import generate_dwarf
+#from character_creation.halfling_char_creation import generate_halfling
+#from character_creation.high_elf_char_creation import generate_high_elf
+#from character_creation.human_char_creation import generate_human
+#from character_creation.wood_elf_char_creation import generate_wood_elf
+
+class Character:
+  def __init__(self):
+    self.character_details = {
+      'Player Name': '',
+      'Character Name': '',
+      'Race': '',
+      'Current Career': '',
+      'Previous Careers': '',
+      'Current Experience Points': 0,
+      'Total Experience Points': 0
+    }
+    self.personal_details = {
+      'Age': 0,
+      'Gender': 0,
+      'Eye Color': '',
+      'Hair Color': '',
+      'Weight': 0,
+      'Height': 0,
+      'Star Sign': '',
+      'Number of Siblings': 0,
+      'Birthplace': '',
+      'Distinguishing Marks': '',
+      'Dooming': ''
+    }
+    self.main_profile = {
+      'Weapon Skill': 0,
+      'Ballistic Skill': 0,
+      'Strength': 0,
+      'Toughness': 0,
+      'Agility': 0,
+      'Intelligence': 0,
+      'Willpower': 0,
+      'Fellowship': 0
+    }
+    self.secondary_profile = {}
+    self.weapons = []
+    self.armour = []
+    self.skills = {}
+    self.talents = []
+    self.trappings = {}
+    self.money = {
+      'Gold Crowns': 0,
+      'Silver Schillings': 0,
+      'Brass Pennies': 0
+    }
+    self.spell_grimoire = {}
+
+  def __repr__(self):
+    return repr(self.character_details['Character Name'])
+    return repr(self.character_details['Race'])
+
+  #def set_weapon_skill(self, skill_value):
+  #  roll = int(input('Roll 2d10 and add them together: '))
+  #  self.main_profile['Weapon Skill'] = skill_value + roll
+  #  print('Your Weapon Skill is: ' + str(self.main_profile['Weapon Skill']))
+
+def generate_player_character(new_character):
+  print('Generating Player Character (PC)')
+  new_character.character_details['Player Name'] = str(input("Enter the player's name: "))
+  new_character.character_details['Character Name'] = input("Enter the character's name: ")
+  print('''Standard Player Race options:
+  1. Dwarf
+  2. Halfling
+  3. High Elf
+  4. Human
+  5. Wood Elf''')
+  race_selection = int(input("Enter the number of your selection: "))
+  if race_selection == 1:
+    new_character.character_details['Race'] = 'Dwarf'
+    print("Dwarf has been selected.")
+    from data.character_data.races.dwarf_char_creation import characteristic_base
+  elif race_selection == 2:
+    new_character.character_details['Race'] = 'Halfling'
+    print("Halfling has been selected.")
+    #generate_halfling()
+  elif race_selection == 3:
+    new_character.character_details['Race'] = 'High Elf'
+    print("High Elf has been selected.")
+    #generate_high_elf()
+  elif race_selection == 4:
+    new_character.character_details['Race'] = 'Human'
+    print("Human has been selected.")
+    #generate_human()
+  elif race_selection == 5:
+    new_character.character_details['Race'] = 'Wood Elf'
+    print("Wood Elf has been selected.")
+    #generate_wood_elf()
+  else:
+    "This is not a valid selection."
+  new_character.main_profile['Weapon Skill'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Weapon Skill']
+  new_character.main_profile['Ballistic Skill'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Ballistic Skill']
+  new_character.main_profile['Strength'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Strength']
+  new_character.main_profile['Toughness'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Toughness']
+  new_character.main_profile['Agility'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Agility']
+  new_character.main_profile['Intelligence'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Intelligence']
+  new_character.main_profile['Willpower'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Willpower']
+  new_character.main_profile['Fellowship'] = int(input('Roll 2d10 and add them together: ')) + characteristic_base['Fellowship']
+  input('The Main Profile is complete. Press enter to proceed.')
+  
+def generate_non_player_character():
+  print('Generating Non Player Character (NPC)')
